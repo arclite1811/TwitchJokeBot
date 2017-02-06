@@ -1,0 +1,14 @@
+{
+  "name": "twitchjokebot",
+  "version": "1.0.0",
+  "description": "Makes jokes in twitch chat automatically. Also rewards people if they get the correct answer to a joke.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Imran Khan",
+  "license": "ISC",
+  "dependencies": {
+    "tmi.js": "^1.1.2"
+  }
+}
