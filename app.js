@@ -1,4 +1,5 @@
 var tmi = require ('tmi.js');
+const https = require('request');
 
 var options = {
     options: {
@@ -15,31 +16,57 @@ var options = {
     channels: ["arclite181"]
 };
 
+
+var url1 = "https://api.icndb.com/jokes/random";
+var joke = "";
+
+var myFunction =  function() {
+  https(url1, function(err, res, body){
+
+  if (err) {
+    return console.log(err);
+  }
+
+  var jokebody = JSON.parse(body);
+  joke = jokebody["value"]["joke"];
+  client.action("arclite181", joke);
+
+});
+}
+function logJoke(){
+    setTimeout(logJoke, 10000);
+    return;
+}
+
 var client = new tmi.client(options);
 client.connect();
 
 
 client.on('connected', function(address, port) {
-  client.action("arclite181", "Hello I am Joke Bot, my purpose in life is to tell jokes!");
+
 });
-
-client.on("chat", function (channel, userstate, message, self) {
-    // Don't listen to my own messages..
-    if (self) return;
-
-
-    client.action("arclite181", userstate['display-name'] + " you are a total noob.");
-
-    // Do your stuff.
-});
-
 
 client.on("whisper", function (from, userstate, message, self) {
     // Don't listen to my own messages..
     if (self) return;
 
     if (message == "hi"){
-    	client.action("arclite181", "asdfadfsa");
+      client.action("arclite181", userstate['display-name'] + " adsfadf");
+
     }
-    // Do your stuff.
 });
+
+client.on("chat", function (channel, userstate, message, self) {
+    // Don't listen to my own messages..
+    if (self) return;
+    if (message == "tell me a joke"){
+    myFunction();
+
+    }
+    //myFunction();
+    //client.action("arclite181", userstate['display-name'] + "Asdfasfd");
+});
+
+
+
+
