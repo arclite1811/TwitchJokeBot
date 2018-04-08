@@ -41,8 +41,8 @@ function logJoke(){
 var client = new tmi.client(options);
 client.connect();
 
-
 client.on('connected', function(address, port) {
+  client.action("arclite181", " Joke bot is in the house!!! Ask me to tell you a joke!");
 
 });
 
@@ -51,7 +51,7 @@ client.on("whisper", function (from, userstate, message, self) {
     if (self) return;
 
     if (message == "hi"){
-      client.action("arclite181", userstate['display-name'] + " adsfadf");
+      client.action("arclite181", userstate['display-name'] + " Howdy!");
 
     }
 });
@@ -59,14 +59,8 @@ client.on("whisper", function (from, userstate, message, self) {
 client.on("chat", function (channel, userstate, message, self) {
     // Don't listen to my own messages..
     if (self) return;
-    if (message == "tell me a joke"){
+    if (message.toUpperCase() == "tell me a joke".toUpperCase()){
     myFunction();
 
     }
-    //myFunction();
-    //client.action("arclite181", userstate['display-name'] + "Asdfasfd");
 });
-
-
-
-
