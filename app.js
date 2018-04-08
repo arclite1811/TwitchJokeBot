@@ -10,8 +10,8 @@ var options = {
       reconnect: true
     },
     identity: {
-      username: "arclite1811",
-      password: "oauth:pmdj2zgfzmlp3027eepvp67cbjec4m"
+      username: ,
+      password: 
     },
     channels: ["arclite181"]
 };
